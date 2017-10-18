@@ -1,41 +1,21 @@
 <?php
 /**
  * Plugin Name: WordPress GitHub Sync
- * Plugin URI: https://github.com/mAAdhaTTah/wordpress-github-sync
+ * Plugin URI:  https://github.com/wpcampus/wordpress-github-sync
  * Description: A WordPress plugin to sync content with a GitHub repository (or Jekyll site).
- * Version: 2.0.1
- * Author:  James DiGioia, Ben Balter
- * Author URI: http://jamesdigioia.com
- * License: GPLv2
+ * Version:     2.0.1
+ * Author:      WPCampus
+ * Author URI:  https://wpcampus.org
+ * License:     GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path: /languages
  * Text Domain: wp-github-sync
- *
- * @package wp-github-sync
+ * @package     wp-github-sync
  */
 
-/**
-		Copyright 2014  James DiGioia  (email : jamesorodig@gmail.com)
-
-		This program is free software; you can redistribute it and/or modify
-		it under the terms of the GNU General Public License, version 2, as
-		published by the Free Software Foundation.
-
-		This program is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
-
-		You should have received a copy of the GNU General Public License
-		along with this program; if not, write to the Free Software
-		Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */
-
-// If the functions have already been autoloaded, don't reload.
-// This fixes function duplication during unit testing.
-$path = dirname( __FILE__ ) . '/vendor/autoload_52.php';
-if ( ! function_exists( 'get_the_github_view_link' ) && file_exists( $path ) ) {
-	require_once $path;
-}
+require_once plugin_dir_path( __FILE__ ) . 'lib/blob.php';
+require_once plugin_dir_path( __FILE__ ) . 'lib/post.php';
+require_once plugin_dir_path( __FILE__ ) . 'helpers.php';
 
 add_action( 'plugins_loaded', array( new WordPress_GitHub_Sync, 'boot' ) );
 
@@ -152,9 +132,11 @@ class WordPress_GitHub_Sync {
 		self::$instance = $this;
 
 		if ( is_admin() ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/admin.php';
 			$this->admin = new WordPress_GitHub_Sync_Admin;
 		}
 
+		require_once plugin_dir_path( __FILE__ ) . 'lib/controller.php';
 		$this->controller = new WordPress_GitHub_Sync_Controller( $this );
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -252,6 +234,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function cli() {
 		if ( ! $this->cli ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/cli.php';
 			$this->cli = new WordPress_GitHub_Sync_CLI;
 		}
 
@@ -265,6 +248,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function request() {
 		if ( ! $this->request ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/request.php';
 			$this->request = new WordPress_GitHub_Sync_Request( $this );
 		}
 
@@ -278,6 +262,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function response() {
 		if ( ! $this->response ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/response.php';
 			$this->response = new WordPress_GitHub_Sync_Response( $this );
 		}
 
@@ -291,6 +276,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function api() {
 		if ( ! $this->api ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/api.php';
 			$this->api = new WordPress_GitHub_Sync_Api( $this );
 		}
 
@@ -304,6 +290,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function import() {
 		if ( ! $this->import ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/import.php';
 			$this->import = new WordPress_GitHub_Sync_Import( $this );
 		}
 
@@ -317,6 +304,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function export() {
 		if ( ! $this->export ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/export.php';
 			$this->export = new WordPress_GitHub_Sync_Export( $this );
 		}
 
@@ -330,6 +318,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function semaphore() {
 		if ( ! $this->semaphore ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/semaphore.php';
 			$this->semaphore = new WordPress_GitHub_Sync_Semaphore;
 		}
 
@@ -343,6 +332,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function database() {
 		if ( ! $this->database ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/database.php';
 			$this->database = new WordPress_GitHub_Sync_Database( $this );
 		}
 
@@ -356,6 +346,7 @@ class WordPress_GitHub_Sync {
 	 */
 	public function cache() {
 		if ( ! $this->cache ) {
+			require_once plugin_dir_path( __FILE__ ) . 'lib/cache.php';
 			$this->cache = new WordPress_GitHub_Sync_Cache;
 		}
 

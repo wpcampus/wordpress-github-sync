@@ -21,7 +21,6 @@ function get_the_github_view_link() {
  */
 function get_the_github_view_url() {
 	$wpghs_post = new WordPress_GitHub_Sync_Post( get_the_ID(), WordPress_GitHub_Sync::$instance->api() );
-
 	return $wpghs_post->github_view_url();
 }
 
@@ -41,7 +40,6 @@ function get_the_github_edit_link() {
  */
 function get_the_github_edit_url() {
 	$wpghs_post = new WordPress_GitHub_Sync_Post( get_the_ID(), WordPress_GitHub_Sync::$instance->api() );
-
 	return $wpghs_post->github_edit_url();
 }
 
@@ -114,5 +112,4 @@ function write_wpghs_link( $atts ) {
 	}
 
 	return $output;
-
 }

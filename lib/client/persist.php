@@ -4,6 +4,9 @@
  * @package WordPress_GitHub_Sync
  */
 
+// Make sure we have the base client class.
+require_once plugin_dir_path( __FILE__ ) . 'lib/client/base.php';
+
 /**
  * Class WordPress_GitHub_Sync_Persist_Client
  */

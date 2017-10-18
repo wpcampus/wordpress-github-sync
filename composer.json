@@ -1,5 +1,5 @@
 {
-  "name": "maadhattah/wp-github-sync",
+  "name": "wpcampus/wordpress-github-sync",
   "description": "A WordPress plugin to sync content with a GitHub repository (or Jekyll site)",
   "type": "wordpress-plugin",
   "minimum-stability": "stable",
@@ -14,19 +14,6 @@
       "email": "jamesorodig@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/mAAdhaTTah/cyps"
-    }
-  ],
-  "autoload": {
-    "classmap": ["lib/"],
-    "files": ["helpers.php"]
-  },
-  "autoload-dev": {
-    "classmap": ["tests/"]
-  },
   "require": {
     "php": ">=5.2",
     "mustangostang/spyc": "^0.6.1",
@@ -41,8 +28,8 @@
     "squizlabs/php_codesniffer": "~2.3"
   },
   "scripts": {
-    "sniff": "phpcs --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress --report=full --extensions=php --ignore=*/tests/*,*/vendor/*",
-    "clean": "phpcbf --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress --report=full --extensions=php --ignore=*/tests/*,*/vendor/*",
+    "sniff": "phpcs --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress --report=full --extensions=php --ignore=*/vendor/*",
+    "clean": "phpcbf --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress --report=full --extensions=php --ignore=*/vendor/*",
     "test": "phpunit",
     "genpot": "vendor/websharks/wp-i18n-tools/makepot.php wp-plugin . $(pwd)/languages/wp-github-sync.pot",
     "post-install-cmd": [

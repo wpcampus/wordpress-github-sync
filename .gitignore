@@ -3,8 +3,11 @@ vendor/
 # Ignore IDE settings
 .idea
 build
-phpunit.xml
 
 # Ignore temp files
 \#*\#
 *~
+
+# Ignore language template and MO files
+*.pot
+*.mo
