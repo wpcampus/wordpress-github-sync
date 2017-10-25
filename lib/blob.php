@@ -145,6 +145,8 @@ class WordPress_GitHub_Sync_Blob {
 			preg_match( '/(^---(.*?)---$)?(.*)/ms', $this->content(), $matches );
 			array_pop( $matches );
 
+			// Make sure we have the Spyc file.
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/Spyc.php';
 			$meta = spyc_load( $matches[2] );
 			if ( isset( $meta['permalink'] ) ) {
 				$meta['permalink'] = str_replace( home_url(), '', $meta['permalink'] );

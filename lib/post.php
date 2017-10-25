@@ -127,6 +127,8 @@ class WordPress_GitHub_Sync_Post {
 	 * Returns String the YAML frontmatter, ready to be written to the file
 	 */
 	public function front_matter() {
+		// Make sure we have the Spyc file.
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/Spyc.php';
 		return "---\n" . spyc_dump( $this->meta() ) . "---\n";
 	}
 
