@@ -46,7 +46,7 @@ class WordPress_GitHub_Sync_Api {
 	 */
 	public function fetch() {
 		if ( ! $this->fetch ) {
-			require_once plugin_dir_path( __FILE__ ) . 'lib/client/fetch.php';
+			require_once plugin_dir_path( __FILE__ ) . 'client/fetch.php';
 			$this->fetch = new WordPress_GitHub_Sync_Fetch_Client( $this->app );
 		}
 
@@ -60,7 +60,7 @@ class WordPress_GitHub_Sync_Api {
 	 */
 	public function persist() {
 		if ( ! $this->persist ) {
-			require_once plugin_dir_path( __FILE__ ) . 'lib/client/persist.php';
+			require_once plugin_dir_path( __FILE__ ) . 'client/persist.php';
 			$this->persist = new WordPress_GitHub_Sync_Persist_Client( $this->app );
 		}
 

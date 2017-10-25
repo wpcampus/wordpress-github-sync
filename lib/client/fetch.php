@@ -5,7 +5,7 @@
  */
 
 // Make sure we have the base client class.
-require_once plugin_dir_path( __FILE__ ) . 'lib/client/base.php';
+require_once plugin_dir_path( __FILE__ ) . 'base.php';
 
 /**
  * Class WordPress_GitHub_Sync_Fetch_Client
@@ -45,7 +45,7 @@ class WordPress_GitHub_Sync_Fetch_Client extends WordPress_GitHub_Sync_Base_Clie
 			return $data;
 		}
 
-		require_once plugin_dir_path( __FILE__ ) . 'lib/commit.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'commit.php';
 		$commit = new WordPress_GitHub_Sync_Commit( $data );
 		$tree   = $this->tree_recursive( $commit->tree_sha() );
 
@@ -98,7 +98,7 @@ class WordPress_GitHub_Sync_Fetch_Client extends WordPress_GitHub_Sync_Base_Clie
 			}
 		}
 
-		require_once plugin_dir_path( __FILE__ ) . 'lib/tree.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'tree.php';
 		$tree = new WordPress_GitHub_Sync_Tree( $data );
 		$tree->set_blobs( $this->blobs( $data->tree ) );
 

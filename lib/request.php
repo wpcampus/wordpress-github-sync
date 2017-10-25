@@ -57,7 +57,7 @@ class WordPress_GitHub_Sync_Request {
 	 * @return WordPress_GitHub_Sync_Payload
 	 */
 	public function payload() {
-		require_once plugin_dir_path( __FILE__ ) . 'lib/payload.php';
+		require_once plugin_dir_path( __FILE__ ) . 'payload.php';
 		return new WordPress_GitHub_Sync_Payload( $this->app, $this->raw_data );
 	}
 
