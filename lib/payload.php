@@ -131,7 +131,7 @@ class WordPress_GitHub_Sync_Payload {
 			throw new Exception( __( 'Commit message tag not set. Filter `wpghs_commit_msg_tag` misconfigured.', 'wp-github-sync' ) );
 		}
 
-		if ( $tag === substr( $this->message(), -1 * strlen( $tag ) ) ) {
+		if ( substr( $this->message(), -1 * strlen( $tag ) ) === $tag ) {
 			return false;
 		}
 

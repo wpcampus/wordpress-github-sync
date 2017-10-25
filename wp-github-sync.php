@@ -211,7 +211,7 @@ class WordPress_GitHub_Sync {
 				<?php
 					printf(
 						__( 'To set up your site to sync with GitHub, update your <a href="%s">settings</a> and click "Export to GitHub."', 'wp-github-sync' ),
-						admin_url( 'options-general.php?page=' . static::$text_domain)
+						admin_url( 'options-general.php?page=' . static::$text_domain )
 					);
 				?>
 			</p>
